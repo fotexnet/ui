@@ -1,6 +1,7 @@
 {
   "usesTypeScript": true,
   "usesCssModule": true,
+  "usesStyledComponents": false,
   "cssPreprocessor": "css",
   "testLibrary": "Testing Library",
   "component": {

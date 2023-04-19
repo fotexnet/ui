@@ -20,6 +20,8 @@
     "npm": "use Yarn!"
   },
   "scripts": {
+    "grc": "npx generate-react-cli",
+    "component": "yarn grc component",
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
@@ -43,10 +45,21 @@
     }
   ],
   "peerDependencies": {
-    "react": ">=16"
+    "react": ">=17",
+    "@mui/material": ">=5",
+    "@mui/icons-material": ">=5",
+    "@emotion/react": ">=11",
+    "@emotion/styled": ">=11"
+  },
+  "dependencies": {
+    "utility-types": "^3.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.12.1",
     "@size-limit/preset-small-lib": "^8.2.4",
     "@storybook/addon-essentials": "^7.0.6",
     "@storybook/addon-info": "^5.3.21",
