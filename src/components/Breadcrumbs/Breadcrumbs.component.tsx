@@ -8,7 +8,7 @@ import useTextShortener from '../../hooks/TextShortener/TextShortener.hook';
 
 export interface IBreadcrumbsProps {
   url: string;
-  labelMap?: Map<string, string>;
+  map?: Map<string, string>;
 }
 
 function Breadcrumbs(props: IBreadcrumbsProps): JSX.Element {
@@ -27,7 +27,7 @@ function Breadcrumbs(props: IBreadcrumbsProps): JSX.Element {
               color="inherit"
               href={parts.filter((_, i) => i <= linkIndex).join('/')}
             >
-              {props.labelMap?.get(label) || (isShort ? tooltip : text)}
+              {props.map?.get(label) || (isShort ? tooltip : text)}
             </Link>
           );
         })}

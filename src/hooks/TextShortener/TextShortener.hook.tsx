@@ -3,10 +3,13 @@ import Typography, { TypographyProps } from '@mui/material/Typography';
 import React, { useMemo } from 'react';
 
 function useTextShortener(text: string, limit: number, options?: TextShortenerOptions): TextShortenerResult {
-  const short = useMemo(() => text.substring(0, limit) + (options?.delimiter || '...'), [text, limit]);
+  const short = useMemo(() => text.substring(0, limit), [text, limit]);
+  const isShort = useMemo(() => short.length < text.length, [short, text]);
+  const shortened = useMemo(() => (isShort ? short + (options?.delimiter || '...') : short), [isShort, short]);
+
   return {
-    isShort: short.length < text.length,
-    text: short,
+    isShort,
+    text: shortened,
     tooltip: (
       <Tooltip title={text} {...options?.tooltipProps}>
         <Typography {...options?.typographyProps}>{short}</Typography>
