@@ -9,10 +9,10 @@
     "dist",
     "src"
   ],
-  "homepage": "https://github.com/fotexnet/react-request#README.md",
+  "homepage": "https://github.com/fotexnet/ui#README.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/fotexnet/react-request.git"
+    "url": "https://github.com/fotexnet/ui.git"
   },
   "publishConfig": {},
   "engines": {
