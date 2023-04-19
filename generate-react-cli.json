@@ -15,6 +15,17 @@
         "component": "templates/component/TemplateName.component.tsx",
         "story": "templates/component/TemplateName.stories.tsx"
       }
+    },
+    "hook": {
+      "path": "src/hooks",
+      "withStory": false,
+      "withLazy": false,
+      "withStyle": false,
+      "withTest": true,
+      "customTemplates": {
+        "component": "templates/hook/TemplateName.hook.tsx",
+        "test": "templates/hook/TemplateName.test.tsx"
+      }
     }
   }
 }

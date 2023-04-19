@@ -22,6 +22,7 @@
   "scripts": {
     "grc": "npx generate-react-cli",
     "component": "yarn grc component",
+    "hook": "yarn grc component --type=hook",
     "start": "tsdx watch",
     "build": "tsdx build",
     "test": "tsdx test --passWithNoTests",
