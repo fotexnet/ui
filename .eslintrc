@@ -27,6 +27,13 @@
     {
       "files": ["**/stories/**/*.stories.mdx", "**/stories/**/*.stories.@(js|jsx|ts|tsx)"],
       "extends": ["plugin:storybook/recommended"]
+    },
+    {
+      "files": ["./templates/component/**"],
+      "rules": {
+        "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-unused-vars": "off"
+      }
     }
   ],
   "rules": {
