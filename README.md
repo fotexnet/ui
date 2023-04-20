@@ -7,6 +7,8 @@
   - [Components](#components)
     - [Header](#header)
     - [Breadcrumbs](#breadcrumbs)
+  - [Utility](#utility)
+    - [createLayout](#createlayout)
 
 # Prerequisites
 
@@ -28,3 +30,7 @@
 ### Header
 
 ### Breadcrumbs
+
+## Utility
+
+### createLayout
