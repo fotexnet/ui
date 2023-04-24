@@ -1,7 +1,7 @@
-import  { StorybookConfig } from '@storybook/react-webpack5';
+import { StorybookConfig } from '@storybook/react-webpack5';
 
 const config: StorybookConfig = {
-  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)', '../stories/**/*.stories.@(ts|tsx|js|jsx)'],
+  stories: ['../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
   typescript: {
     check: true,
