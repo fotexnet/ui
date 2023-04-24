@@ -29,8 +29,53 @@
 
 ### Header
 
+```typescript
+type HeaderProps = {
+  Logo?: JSX.Element;
+  backgroundColor?: string;
+} & { children?: ReactNode };
+```
+
+| property          | type        | required | default | description                                                                                        |
+| ----------------- | ----------- | -------- | ------- | -------------------------------------------------------------------------------------------------- |
+| `Logo`            | `Element`   | No       | -       | Sets the element on the left side of the flexbox                                                   |
+| `backgroundColor` | `string`    | No       | -       | Sets the background color. Accepts classes and css colors, but not css strings such as `aliceblue` |
+| `children`        | `ReactNode` | No       | -       | Sets the child elements in the right side of the flexbox                                           |
+
 ### Breadcrumbs
+
+```typescript
+interface IBreadcrumbsProps {
+  url: string;
+  map?: Map<string, string>;
+}
+```
+
+| property | type                  | required | default | description                                                                            |
+| -------- | --------------------- | -------- | ------- | -------------------------------------------------------------------------------------- |
+| `url`    | `string`              | Yes      | -       | Splits up the url by `/` and creates an array of breadcrumbs. Uses the parts as labels |
+| `map`    | `Map<string, string>` | No       | -       | If present, parses the breadcrumb array to use the corresponding label in the map      |
 
 ## Utility
 
 ### createLayout
+
+| argument   | type        | required | default | description                     |
+| ---------- | ----------- | -------- | ------- | ------------------------------- |
+| `parts`    | `Element[]` | Yes      | -       | Layout elements in order        |
+| `position` | `number`    | Yes      | -       | Position of the wrapped element |
+
+```jsx
+const withLayout = createLayout([<div>Header</div>, <div>Footer</div>], 1);
+const Page = withLayout(() => <div>Main</div>);
+
+/*
+Result:
+
+<>
+  <div>Header</div>
+  <div>Main</div>
+  <div>Footer</div>
+</>
+*/
+```
