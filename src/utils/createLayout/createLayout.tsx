@@ -33,7 +33,7 @@ function insertElement(elements: JSX.Element[], element: JSX.Element, position: 
     if (i === position) output.push(element);
     output.push(elements[i]);
   }
-  if (position > elements.length) output.push(element);
+  if (position >= elements.length) output.push(element);
   return output;
 }
 

@@ -98,7 +98,7 @@ describe('createLayout', () => {
   });
 
   it('should add elements to main wrapper', () => {
-    const withLayout = createLayout(layout, 1, { content: [<div key="1">1</div>, <div key="2">2</div>], position: 0 });
+    const withLayout = createLayout(layout, 1, { content: [<div key="1">1</div>, <div key="2">2</div>], position: 5 });
     const Page = withLayout(() => (
       <div key="layout-main" data-testid="part">
         Main
