@@ -7,3 +7,4 @@ export { default as useStorage, Storage, StorageObject } from './Storage/Storage
 export { default as usePrevState } from './PrevState/PrevState.hook';
 export { default as useToggle, ToggleObject } from './Toggle/Toggle.hook';
 export { default as useMediaQuery } from './MediaQuery/MediaQuery.hook';
+export { default as useFormUtils, UseFormUtils } from './FormUtils/FormUtils.hook';
