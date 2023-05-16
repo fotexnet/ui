@@ -1,1 +1,1 @@
-export * from './createLayout/createLayout';
+export { default as createLayout } from './createLayout/createLayout';
