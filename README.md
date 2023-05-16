@@ -7,6 +7,13 @@
   - [Components](#components)
     - [Header](#header)
     - [Breadcrumbs](#breadcrumbs)
+  - [Hooks](#hooks)
+    - [useFormUtils](#useformutils)
+    - [useMediaQuery](#usemediaquery)
+    - [usePrevState](#useprevstate)
+    - [useStorage](#usestorage)
+    - [useTextShortener](#usetextshortener)
+    - [useToggle](#usetoggle)
   - [Utility](#utility)
     - [createLayout](#createlayout)
 
@@ -55,6 +62,20 @@ interface IBreadcrumbsProps {
 | -------- | --------------------- | -------- | ------- | -------------------------------------------------------------------------------------- |
 | `url`    | `string`              | Yes      | -       | Splits up the url by `/` and creates an array of breadcrumbs. Uses the parts as labels |
 | `map`    | `Map<string, string>` | No       | -       | If present, parses the breadcrumb array to use the corresponding label in the map      |
+
+## Hooks
+
+### useFormUtils
+
+### useMediaQuery
+
+### usePrevState
+
+### useStorage
+
+### useTextShortener
+
+### useToggle
 
 ## Utility
 
