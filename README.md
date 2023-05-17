@@ -109,11 +109,11 @@ Used to store data in your browser. Uses either `localStorage` or `sessionStorag
 
 **StorageObject:**
 
-| argument | type                         | required | default | description                                      |
-| -------- | ---------------------------- | -------- | ------- | ------------------------------------------------ |
-| `value`  | `TValue | undefined`         | Yes      | -       | -                                                |
-| `update` | `(newValue: TValue) => void` | Yes      | -       | Updates state and field in your browsers storage |
-| `remove` | `() => void`                 | Yes      | -       | Removes the field from your browsers storage     |
+| argument | type                         | description                                      |
+| -------- | ---------------------------- | ------------------------------------------------ |
+| `value`  | `TValue`                     | -                                                |
+| `update` | `(newValue: TValue) => void` | Updates state and field in your browsers storage |
+| `remove` | `() => void`                 | Removes the field from your browsers storage     |
 
 ### useTextShortener
 
