@@ -13,7 +13,7 @@ const BreadcrumbsStory: StoryFn<IBreadcrumbsProps> = args => <Component {...args
 
 export const BreadcrumbsComponent = BreadcrumbsStory.bind({});
 BreadcrumbsComponent.args = {
-  url: '/users/b1d1945d-e905-4804-9153-fddd03f846a1/settings',
+  url: '/users/new',
   map: new Map<string, string>([
     ['users', 'Felhasználók'],
     ['settings', 'Beállítások'],
