@@ -155,10 +155,10 @@ Used for capturing toggle states. Eg. when you want to use a switch or you have 
 
 **ToggleObject:**
 
-| argument   | type         | description                                          |
-| ---------- | ------------ | ---------------------------------------------------- |
-| `isActive` | `boolean`    | Current state of the toggle                          |
-| `toggle`   | `() => void` | Toggles the state (swaps between `true` and `false`) |
+| argument   | type                        | description                                                                 |
+| ---------- | --------------------------- | --------------------------------------------------------------------------- |
+| `isActive` | `boolean`                   | Current state of the toggle                                                 |
+| `toggle`   | `(value?: boolean) => void` | Toggles the state (swaps between `true` and `false`) or sets explicit value |
 
 ## Utilities
 

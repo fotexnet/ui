@@ -3,8 +3,8 @@ import { useCallback, useState } from 'react';
 function useToggle(initialValue: boolean = false): ToggleObject {
   const [isActive, setIsActive] = useState<boolean>(initialValue);
 
-  const toggle = useCallback(() => {
-    setIsActive(prev => !prev);
+  const toggle = useCallback((value?: boolean) => {
+    setIsActive(prev => value || !prev);
   }, []);
 
   return { isActive, toggle };
