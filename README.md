@@ -99,7 +99,7 @@ Used to store data in your browser. Uses either `localStorage` or `sessionStorag
 - `<TValue = string>(storage: Storage, key: string): StorageObject<TValue>`
 - `<TValue>(storage: Storage, key: string, initialValue: TValue): StorageObject<TValue>`
 
-**Returns:** A `StorageObject`
+**Returns:** A `StorageObject` object
 
 | argument       | type      | required | default | description                                                  |
 | -------------- | --------- | -------- | ------- | ------------------------------------------------------------ |
@@ -117,12 +117,37 @@ Used to store data in your browser. Uses either `localStorage` or `sessionStorag
 
 ### useTextShortener
 
+**Signature:** `(text: string, limit: number, options?: TextShortenerOptions) => TextShortenerResult`
+**Returns:** A `TextShortenerResult` object
+
+| argument  | type                   | required | default | description           |
+| --------- | ---------------------- | -------- | ------- | --------------------- |
+| `text`    | `string`               | Yes      | -       | A `string` to shorten |
+| `limit`   | `number`               | Yes      | -       | Character limit       |
+| `options` | `TextShortenerOptions` | No       | -       | -                     |
+
+**TextShortenerOptions:**
+
+| argument          | type                                       | required | default | description                                  |
+| ----------------- | ------------------------------------------ | -------- | ------- | -------------------------------------------- |
+| `delimiter`       | `string`                                   | Yes      | `...`   | A `string` that the shortened text ends with |
+| `tooltipProps`    | `Omit<TooltipProps, 'children' | 'title'>` | Yes      | -       | MUI tooltip API                              |
+| `typographyProps` | `Omit<TypographyProps, 'children'>`        | No       | -       | MUI typography API                           |
+
+**TextShortenerResult:**
+
+| argument  | type          | description                                           |
+| --------- | ------------- | ----------------------------------------------------- |
+| `isShort` | `boolean`     | Determines if the returned `text` is shortened or not |
+| `text`    | `string`      | Shortened text                                        |
+| `tooltip` | `JSX.Element` | Tooltip element for the `text`                        |
+
 ### useToggle
 
 Used for capturing toggle states. Eg. when you want to use a switch or you have a toggle button.
 
 **Signature:** `(initialValue?: boolean) => ToggleObject`
-**Returns:** A `ToggleObject`
+**Returns:** A `ToggleObject` object
 
 | argument       | type      | required | default | description |
 | -------------- | --------- | -------- | ------- | ----------- |
