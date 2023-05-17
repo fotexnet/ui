@@ -5,8 +5,8 @@
 - [Installation](#installation)
 - [Package contents](#package-contents)
   - [Components](#components)
-    - [Header](#header)
     - [Breadcrumbs](#breadcrumbs)
+    - [Header](#header)
   - [Hooks](#hooks)
     - [useFormUtils](#useformutils)
     - [useMediaQuery](#usemediaquery)
@@ -35,6 +35,20 @@
 
 ## Components
 
+### Breadcrumbs
+
+```typescript
+interface IBreadcrumbsProps {
+  url: string;
+  map?: Map<string, string>;
+}
+```
+
+| property | type                  | required | default | description                                                                            |
+| -------- | --------------------- | -------- | ------- | -------------------------------------------------------------------------------------- |
+| `url`    | `string`              | Yes      | -       | Splits up the url by `/` and creates an array of breadcrumbs. Uses the parts as labels |
+| `map`    | `Map<string, string>` | No       | -       | If present, parses the breadcrumb array to use the corresponding label in the map      |
+
 ### Header
 
 ```typescript
@@ -50,33 +64,50 @@ type HeaderProps = {
 | `backgroundColor` | `string`    | No       | -       | Sets the background color. Accepts classes and css colors, but not css strings such as `aliceblue` |
 | `children`        | `ReactNode` | No       | -       | Sets the child elements in the right side of the flexbox                                           |
 
-### Breadcrumbs
-
-```typescript
-interface IBreadcrumbsProps {
-  url: string;
-  map?: Map<string, string>;
-}
-```
-
-| property | type                  | required | default | description                                                                            |
-| -------- | --------------------- | -------- | ------- | -------------------------------------------------------------------------------------- |
-| `url`    | `string`              | Yes      | -       | Splits up the url by `/` and creates an array of breadcrumbs. Uses the parts as labels |
-| `map`    | `Map<string, string>` | No       | -       | If present, parses the breadcrumb array to use the corresponding label in the map      |
-
 ## Hooks
 
 ### useFormUtils
 
 ### useMediaQuery
 
+Used for checking screen size and orientation. Returns if the screen size matches the given argument.
+
+**Signature:** `(mediaQuery: string) => boolean`
+
+| argument     | type     | required | default | description                |
+| ------------ | -------- | -------- | ------- | -------------------------- |
+| `mediaQuery` | `string` | Yes      | -       | Media query in CSS3 format |
+
 ### usePrevState
+
+Used for keep track of the previous state. Returns `undefined` in the first render, then returns the previous state.
+
+**Signature:** `<TState>(state: TState) => TState | undefined`
+
+| argument | type    | required | default | description                                 |
+| -------- | ------- | -------- | ------- | ------------------------------------------- |
+| `state`  | generic | Yes      | -       | This is the state you want to keep track of |
 
 ### useStorage
 
 ### useTextShortener
 
 ### useToggle
+
+Used for capturing toggle states. Eg. when you want to use a switch or you have a toggle button.
+
+**Signature:** `(initialValue?: boolean) => ToggleObject`
+
+| argument       | type      | required | default | description |
+| -------------- | --------- | -------- | ------- | ----------- |
+| `initialValue` | `boolean` | No       | `false` | -           |
+
+**ToggleObject:** `{ isActive: boolean; toggle: () => void }`
+
+| argument   | type         | description                                          |
+| ---------- | ------------ | ---------------------------------------------------- |
+| `isActive` | `boolean`    | Current state of the toggle                          |
+| `toggle`   | `() => void` | Toggles the state (swaps between `true` and `false`) |
 
 ## Utilities
 
