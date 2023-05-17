@@ -13,7 +13,10 @@ export interface IBreadcrumbsProps {
 
 function Breadcrumbs(props: IBreadcrumbsProps): JSX.Element {
   const parts = useMemo(() => props.url.split('/').filter(label => !!label), [props.url]);
-  const activePart = useMemo(() => parts.pop(), [parts]);
+  const activePart = useMemo(() => {
+    const active: string = parts.pop() || '';
+    return props.map?.get(active) || active;
+  }, [parts]);
 
   return (
     <Box>
