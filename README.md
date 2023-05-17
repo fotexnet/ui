@@ -16,6 +16,7 @@
     - [useToggle](#usetoggle)
   - [Utility](#utility)
     - [createLayout](#createlayout)
+    - [mergeMap](#mergemap)
 
 # Prerequisites
 
@@ -81,22 +82,107 @@ interface IBreadcrumbsProps {
 
 ### createLayout
 
-| argument   | type        | required | default | description                     |
-| ---------- | ----------- | -------- | ------- | ------------------------------- |
-| `parts`    | `Element[]` | Yes      | -       | Layout elements in order        |
-| `position` | `number`    | Yes      | -       | Position of the wrapped element |
+Creates a higher-order component. The created layout has a wrapper `div` for further configuration. The main content (aka the component you want to wrap) also has a wrapper `main` for further configuration.
+
+**Signature:** `(parts: JSX.Element[], position: number, options?: CreateLayoutOptions) => HigherOrderComponent`
+
+| argument   | type                  | required | default | description                      |
+| ---------- | --------------------- | -------- | ------- | -------------------------------- |
+| `parts`    | `Element[]`           | Yes      | -       | Layout elements in order         |
+| `position` | `number`              | Yes      | -       | Position of the wrapped element. |
+| `options`  | `CreateLayoutOptions` | No       | -       | -                                |
+
+You can pass each individual `part` of your layout as an array **IN ORDER** for the first argument and pass a `position` that indicates the function where to insert the content of your layout. This `position` can be anything except negative. If it exceeds the array length, then the content will be pushed at the end, otherwise the current `part` on the specified index will be pushed back once and the content will take it's place.
+
+**Example:**
 
 ```jsx
-const withLayout = createLayout([<div>Header</div>, <div>Footer</div>], 1);
+const withLayout = createLayout([<div>Header</div> /* index: 0 */, <div>Footer</div> /* index: 1 */], 1);
 const Page = withLayout(() => <div>Main</div>);
 
-/*
-Result:
+/* 
+  Result:
+  [
+    <div>Header</div>, // index: 0
+    <div>Main</div>,   // index: 1
+    <div>Footer</div>  // index: 2
+  ]
+*/
+```
 
-<>
-  <div>Header</div>
-  <div>Main</div>
-  <div>Footer</div>
-</>
+**HigherOrderComponent:** `<TProps extends object>(Component: React.ComponentType<TProps>) => React.FC<TProps>`
+
+**CreateLayoutOptions**
+
+| argument         | type            | required                                    | default | description |
+| ---------------- | --------------- | ------------------------------------------- | ------- | ----------- |
+| `wrapperClasses` | `string`        | No                                          | -       |             |
+| `mainClasses`    | `string`        | No                                          | -       |             |
+| `content`        | `JSX.Element[]` | Yes if `position` is present. No by default | -       |             |
+| `position`       | `number`        | Yes if `content` is present. No by default  | -       |             |
+
+### mergeMap
+
+This utility merges 2 maps of the same type. The first argument is the **base** where the submission will be merged into. It will override any `key-value` pair that already exist!
+
+**Signature:** `<T extends Map<unknown, unknown>>(baseMap: T, submittedMap: T) => T`
+
+| argument       | type    | required | default | description                                                   |
+| -------------- | ------- | -------- | ------- | ------------------------------------------------------------- |
+| `baseMap`      | generic | Yes      | -       | Will be cloned and used for base `Map`                        |
+| `submittedMap` | generic | Yes      | -       | Will be merged into `baseMap` and override any existing value |
+
+```typescript
+// Example of merging
+
+const baseMap = new Map<string, string>([
+  ['a', '1'],
+  ['b', '2'],
+  ['c', '3'],
+]);
+
+const submittedMap = new Map<string, string>([
+  ['d', '1'],
+  ['e', '2'],
+  ['f', '3'],
+]);
+
+const map = mergeMap(baseMap, submittedMap);
+/*
+  Result:
+  [
+    ['a','1'],
+    ['b','2'],
+    ['c','3'],
+    ['d','1'],
+    ['e','2'],
+    ['f','3']
+  ]
+*/
+```
+
+```typescript
+// Example of overriding
+
+const baseMap = new Map<string, string>([
+  ['a', '1'],
+  ['b', '2'],
+  ['c', '3'],
+]);
+
+const submittedMap = new Map<string, string>([
+  ['a', '3'],
+  ['d', '4'],
+]);
+
+const map = mergeMap(baseMap, submittedMap);
+/*
+  Result:
+  [
+    ['a','3'],
+    ['b','2'],
+    ['c','3'],
+    ['d','4']
+  ]
 */
 ```
