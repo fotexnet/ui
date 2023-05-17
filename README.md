@@ -14,7 +14,7 @@
     - [useStorage](#usestorage)
     - [useTextShortener](#usetextshortener)
     - [useToggle](#usetoggle)
-  - [Utility](#utility)
+  - [Utilities](#utilities)
     - [createLayout](#createlayout)
     - [mergeMap](#mergemap)
 
@@ -78,7 +78,7 @@ interface IBreadcrumbsProps {
 
 ### useToggle
 
-## Utility
+## Utilities
 
 ### createLayout
 
@@ -92,7 +92,7 @@ Creates a higher-order component. The created layout has a wrapper `div` for fur
 | `position` | `number`              | Yes      | -       | Position of the wrapped element. |
 | `options`  | `CreateLayoutOptions` | No       | -       | -                                |
 
-You can pass each individual `part` of your layout as an array **IN ORDER** for the first argument and pass a `position` that indicates the function where to insert the content of your layout. This `position` can be anything except negative. If it exceeds the array length, then the content will be pushed at the end, otherwise the current `part` on the specified index will be pushed back once and the content will take it's place.
+You can pass each individual `part` of your layout as an array (**IN ORDER!**) for the first argument and pass a `position` that indicates the function where to insert the content of your layout. This `position` can be anything except negative. If it exceeds the array length, then the content will be pushed at the end, otherwise the current `part` on the specified index will be pushed back once and the content will take it's place.
 
 **Example:**
 
@@ -114,27 +114,27 @@ const Page = withLayout(() => <div>Main</div>);
 
 **CreateLayoutOptions**
 
-| argument         | type            | required                                    | default | description |
-| ---------------- | --------------- | ------------------------------------------- | ------- | ----------- |
-| `wrapperClasses` | `string`        | No                                          | -       |             |
-| `mainClasses`    | `string`        | No                                          | -       |             |
-| `content`        | `JSX.Element[]` | Yes if `position` is present. No by default | -       |             |
-| `position`       | `number`        | Yes if `content` is present. No by default  | -       |             |
+| argument         | type            | required                                    | default | description                                                           |
+| ---------------- | --------------- | ------------------------------------------- | ------- | --------------------------------------------------------------------- |
+| `wrapperClasses` | `string`        | No                                          | -       | -                                                                     |
+| `mainClasses`    | `string`        | No                                          | -       | -                                                                     |
+| `content`        | `JSX.Element[]` | Yes if `position` is present. No by default | -       | Same as the `parts` argument except this will be in your main content |
+| `position`       | `number`        | Yes if `content` is present. No by default  | -       | Same as the `position` argument                                       |
 
 ### mergeMap
 
-This utility merges 2 maps of the same type. The first argument is the **base** where the submission will be merged into. It will override any `key-value` pair that already exist!
+This utility merges 2 maps of the same type. The first argument is the **base** where the second argument will be merged into. It will override any `key-value` pair that already exist!
 
 **Signature:** `<T extends Map<unknown, unknown>>(baseMap: T, submittedMap: T) => T`
 
-| argument       | type    | required | default | description                                                   |
-| -------------- | ------- | -------- | ------- | ------------------------------------------------------------- |
-| `baseMap`      | generic | Yes      | -       | Will be cloned and used for base `Map`                        |
-| `submittedMap` | generic | Yes      | -       | Will be merged into `baseMap` and override any existing value |
+| argument       | type  | required | default | description                                                         |
+| -------------- | ----- | -------- | ------- | ------------------------------------------------------------------- |
+| `baseMap`      | `Map` | Yes      | -       | Will be cloned and used for base                                    |
+| `submittedMap` | `Map` | Yes      | -       | Will be merged into the cloned base and override any existing value |
+
+**Example of merging:**
 
 ```typescript
-// Example of merging
-
 const baseMap = new Map<string, string>([
   ['a', '1'],
   ['b', '2'],
@@ -161,9 +161,9 @@ const map = mergeMap(baseMap, submittedMap);
 */
 ```
 
-```typescript
-// Example of overriding
+**Example of overriding:**
 
+```typescript
 const baseMap = new Map<string, string>([
   ['a', '1'],
   ['b', '2'],
