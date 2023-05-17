@@ -73,6 +73,7 @@ type HeaderProps = {
 Used for checking screen size and orientation. Returns if the screen size matches the given argument.
 
 **Signature:** `(mediaQuery: string) => boolean`
+**Returns:** `true` or `false`
 
 | argument     | type     | required | default | description                |
 | ------------ | -------- | -------- | ------- | -------------------------- |
@@ -83,12 +84,36 @@ Used for checking screen size and orientation. Returns if the screen size matche
 Used for keep track of the previous state. Returns `undefined` in the first render, then returns the previous state.
 
 **Signature:** `<TState>(state: TState) => TState | undefined`
+**Returns:** The previous state
 
-| argument | type    | required | default | description                                 |
-| -------- | ------- | -------- | ------- | ------------------------------------------- |
-| `state`  | generic | Yes      | -       | This is the state you want to keep track of |
+| argument | type     | required | default | description                                 |
+| -------- | -------- | -------- | ------- | ------------------------------------------- |
+| `state`  | `TState` | Yes      | -       | This is the state you want to keep track of |
 
 ### useStorage
+
+Used to store data in your browser. Uses either `localStorage` or `sessionStorage`.
+
+**Signatures:**
+
+- `<TValue = string>(storage: Storage, key: string): StorageObject<TValue>`
+- `<TValue>(storage: Storage, key: string, initialValue: TValue): StorageObject<TValue>`
+
+**Returns:** A `StorageObject`
+
+| argument       | type      | required | default | description                                                  |
+| -------------- | --------- | -------- | ------- | ------------------------------------------------------------ |
+| `storage`      | `Storage` | Yes      | -       | Possible values are `localStorage` and `sessionStorage`      |
+| `key`          | `string`  | Yes      | -       | This is used to indentify the field in your browsers storage |
+| `initialValue` | `TValue`  | Yes      | -       | -                                                            |
+
+**StorageObject:**
+
+| argument | type                         | required | default | description                                      |
+| -------- | ---------------------------- | -------- | ------- | ------------------------------------------------ |
+| `value`  | `TValue | undefined`         | Yes      | -       | -                                                |
+| `update` | `(newValue: TValue) => void` | Yes      | -       | Updates state and field in your browsers storage |
+| `remove` | `() => void`                 | Yes      | -       | Removes the field from your browsers storage     |
 
 ### useTextShortener
 
@@ -97,12 +122,13 @@ Used for keep track of the previous state. Returns `undefined` in the first rend
 Used for capturing toggle states. Eg. when you want to use a switch or you have a toggle button.
 
 **Signature:** `(initialValue?: boolean) => ToggleObject`
+**Returns:** A `ToggleObject`
 
 | argument       | type      | required | default | description |
 | -------------- | --------- | -------- | ------- | ----------- |
 | `initialValue` | `boolean` | No       | `false` | -           |
 
-**ToggleObject:** `{ isActive: boolean; toggle: () => void }`
+**ToggleObject:**
 
 | argument   | type         | description                                          |
 | ---------- | ------------ | ---------------------------------------------------- |
@@ -116,6 +142,7 @@ Used for capturing toggle states. Eg. when you want to use a switch or you have 
 Creates a higher-order component. The created layout has a wrapper `div` for further configuration. The main content (aka the component you want to wrap) also has a wrapper `main` for further configuration.
 
 **Signature:** `(parts: JSX.Element[], position: number, options?: CreateLayoutOptions) => HigherOrderComponent`
+**Returns:** A higher-order component
 
 | argument   | type                  | required | default | description                      |
 | ---------- | --------------------- | -------- | ------- | -------------------------------- |
@@ -157,6 +184,7 @@ const Page = withLayout(() => <div>Main</div>);
 This utility merges 2 maps of the same type. The first argument is the **base** where the second argument will be merged into. It will override any `key-value` pair that already exist!
 
 **Signature:** `<T extends Map<unknown, unknown>>(baseMap: T, submittedMap: T) => T`
+**Returns:** A new map with the values of both argument.
 
 | argument       | type  | required | default | description                                                         |
 | -------------- | ----- | -------- | ------- | ------------------------------------------------------------------- |
