@@ -12,7 +12,7 @@ function useTextShortener(text: string, limit: number, options?: TextShortenerOp
     text: shortened,
     tooltip: (
       <Tooltip title={text} {...options?.tooltipProps}>
-        <Typography {...options?.typographyProps}>{short}</Typography>
+        <Typography {...options?.typographyProps}>{shortened}</Typography>
       </Tooltip>
     ),
   };
