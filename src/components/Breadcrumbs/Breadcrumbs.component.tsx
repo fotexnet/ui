@@ -48,5 +48,5 @@ export default Breadcrumbs;
 export type ClickableLabel = { label: string; clickable: boolean };
 
 export function isClickableLabel(obj: unknown): obj is ClickableLabel {
-  return !!obj && Object.hasOwn(obj, 'label') && Object.hasOwn(obj, 'clickable');
+  return typeof obj === 'object' && !!obj && obj.hasOwnProperty('label') && obj.hasOwnProperty('clickable');
 }
