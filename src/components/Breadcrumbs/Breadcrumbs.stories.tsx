@@ -1,6 +1,6 @@
 import { Meta, StoryFn } from '@storybook/react';
 import React from 'react';
-import Component, { IBreadcrumbsProps } from './Breadcrumbs.component';
+import Component, { ClickableLabel, IBreadcrumbsProps } from './Breadcrumbs.component';
 
 const config: Meta<IBreadcrumbsProps> = {
   title: 'Layout/Breadcrumbs',
@@ -17,5 +17,14 @@ BreadcrumbsComponent.args = {
   map: new Map<string, string>([
     ['users', 'Felhasználók'],
     ['settings', 'Beállítások'],
+  ]),
+};
+
+export const NotClickableBreadcrumbsComponent = BreadcrumbsStory.bind({});
+NotClickableBreadcrumbsComponent.args = {
+  url: '/users/new',
+  map: new Map<string, string | ClickableLabel>([
+    ['users', { label: 'Felhasználók', clickable: false }],
+    ['new', 'Új felhasználó'],
   ]),
 };

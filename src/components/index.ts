@@ -1,2 +1,7 @@
 export { default as Header, HeaderProps } from './Header/Header.component';
-export { default as Breadcrumbs, IBreadcrumbsProps } from './Breadcrumbs/Breadcrumbs.component';
+export {
+  default as Breadcrumbs,
+  isClickableLabel,
+  IBreadcrumbsProps,
+  ClickableLabel,
+} from './Breadcrumbs/Breadcrumbs.component';
