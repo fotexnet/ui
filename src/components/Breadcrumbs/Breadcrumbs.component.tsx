@@ -7,14 +7,15 @@ import React, { useMemo } from 'react';
 
 export interface IBreadcrumbsProps {
   url: string;
-  map?: Map<string, string>;
+  map?: Map<string, string | ClickableLabel>;
 }
 
 function Breadcrumbs(props: IBreadcrumbsProps): JSX.Element {
   const parts = useMemo(() => props.url.split('/').filter(label => !!label), [props.url]);
   const activePart = useMemo(() => {
     const active: string = parts.pop() || '';
-    return props.map?.get(active) || active;
+    const _label = props.map?.get(active) || active;
+    return isClickableLabel(_label) ? _label.label : _label;
   }, [parts]);
 
   return (
@@ -22,10 +23,18 @@ function Breadcrumbs(props: IBreadcrumbsProps): JSX.Element {
       <_Breadcrumbs separator={<NavigateNextIcon fontSize="small" />}>
         {parts.map((label, linkIndex) => {
           const href = '/' + parts.filter((_, i) => i <= linkIndex).join('/');
-          return (
+          const _label = props.map?.get(label) || label;
+          const currentLabel = isClickableLabel(_label) ? _label.label : _label;
+          const clickable = isClickableLabel(_label) ? _label.clickable : true;
+
+          return clickable ? (
             <Link key={`breadcrumbLink-${label}-${linkIndex}`} underline="hover" color="inherit" href={href}>
-              {props.map?.get(label) || label}
+              {currentLabel}
             </Link>
+          ) : (
+            <Typography key={`breadcrumbLink-${label}-${linkIndex}`} color="inherit">
+              {currentLabel}
+            </Typography>
           );
         })}
         <Typography color="text.primary">{activePart}</Typography>
@@ -35,3 +44,9 @@ function Breadcrumbs(props: IBreadcrumbsProps): JSX.Element {
 }
 
 export default Breadcrumbs;
+
+export type ClickableLabel = { label: string; clickable: boolean };
+
+export function isClickableLabel(obj: unknown): obj is ClickableLabel {
+  return !!obj && Object.hasOwn(obj, 'label') && Object.hasOwn(obj, 'clickable');
+}
