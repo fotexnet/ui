@@ -1,7 +1,6 @@
 {
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "name": "@fotexnet/ui",
-  "author": "Nagy Viktor",
   "license": "MIT",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -15,10 +14,6 @@
     "url": "https://github.com/fotexnet/ui.git"
   },
   "publishConfig": {},
-  "engines": {
-    "node": ">=10",
-    "npm": "use Yarn!"
-  },
   "scripts": {
     "grc": "npx generate-react-cli",
     "component": "yarn grc component",
