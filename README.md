@@ -1,3 +1,7 @@
+# Archived
+
+This package is archived because not used in any projects and deprecated.
+
 # Table of content
 
 - [Table of content](#table-of-content)
